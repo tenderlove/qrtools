@@ -46,9 +46,11 @@ static VALUE body(VALUE self)
   Data_Get_Struct(_header, QrCodeHeader, head);
 
   char *buf = calloc(head->byte_size + 1, sizeof(char));
-  qr_decoder_get_body(decoder, (unsigned char *)buf, head->byte_size + 1);
+  VALUE b = Qnil;
 
-  VALUE b = rb_str_new(buf, head->byte_size);
+  if(qr_decoder_get_body(decoder, (unsigned char *)buf, head->byte_size + 1))
+    b = rb_str_new(buf, head->byte_size);
+
   free(buf);
   return b;
 }
