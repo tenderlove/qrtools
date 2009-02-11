@@ -22,4 +22,4 @@ dir_config('opencv', "/opt/local/include/opencv", "/opt/local/lib")
   abort "need #{lib}" unless have_library(lib)
 end
 have_library('stdc++')
-create_makefile('qrdecode')
+create_makefile('qrtools')

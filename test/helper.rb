@@ -4,9 +4,9 @@ require 'test/unit'
   $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), path)))
 end
 
-require 'qrdecode'
+require 'qrtools'
 
-class QRDecodeTestCase < Test::Unit::TestCase
+class QRToolsTestCase < Test::Unit::TestCase
   ASSETS = File.expand_path(File.join(File.dirname(__FILE__), 'assets'))
 
   unless RUBY_VERSION >= '1.9'
