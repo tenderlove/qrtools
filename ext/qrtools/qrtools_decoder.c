@@ -1,21 +1,26 @@
 #include <qrtools_decoder.h>
 
-static VALUE allocate(VALUE klass)
-{
-  QrDecoderHandle decoder = qr_decoder_open();
-
-  return Data_Wrap_Struct(klass, NULL, qr_decoder_close, decoder);
-}
-
-static VALUE decode(VALUE self, VALUE image)
+static VALUE decode(VALUE klass, VALUE image)
 {
   IplImage * src;
   Data_Get_Struct(image, IplImage, src);
 
-  QrDecoderHandle decoder;
-  Data_Get_Struct(self, struct QrDecoderHandle, decoder);
+  QrDecoderHandle decoder = qr_decoder_open();
 
-  return INT2NUM(qr_decoder_decode_image(decoder, src, DEFAULT_ADAPTIVE_TH_SIZE, DEFAULT_ADAPTIVE_TH_DELTA));
+  short status = qr_decoder_decode_image(
+      decoder,
+      src,
+      DEFAULT_ADAPTIVE_TH_SIZE,
+      DEFAULT_ADAPTIVE_TH_DELTA
+  );
+
+  VALUE self = Data_Wrap_Struct(klass, NULL, qr_decoder_close, decoder);
+  return self;
+}
+
+static VALUE header(VALUE self)
+{
+  return Qnil;
 }
 
 VALUE cQRToolsDecoder;
@@ -26,6 +31,6 @@ void init_qrtools_decoder()
 
   cQRToolsDecoder = klass;
 
-  rb_define_alloc_func(klass, allocate);
-  rb_define_method(klass, "decode", decode, 1);
+  rb_define_singleton_method(klass, "decode", decode, 1);
+  rb_define_method(klass, "header", header, 0);
 }

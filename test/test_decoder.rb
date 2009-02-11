@@ -1,14 +1,15 @@
 require File.expand_path(File.join(File.dirname(__FILE__), "helper"))
 
 class DecoderTestCase < QRToolsTestCase
-  def test_new
-    assert decoder = QRTools::Decoder.new
+  def test_decode
+    img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
+    assert decoder = QRTools::Decoder.decode(img)
   end
 
-  def test_decode
-    decoder = QRTools::Decoder.new
+  def test_header
     img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
-    assert val = decoder.decode(img)
+    assert decoder = QRTools::Decoder.decode(img)
+    assert decoder.header
   end
 end
 
