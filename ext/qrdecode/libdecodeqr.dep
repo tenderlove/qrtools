@@ -1,0 +1,80 @@
+# Microsoft Developer Studio Generated Dependency File, included by libdecodeqr.mak
+
+.\bitstream.cpp : \
+	".\bitstream.h"\
+	
+
+.\codedata.cpp : \
+	".\bitstream.h"\
+	".\codedata.h"\
+	".\ecidecoder.h"\
+	".\galois.h"\
+	".\qrerror.h"\
+	
+
+.\container.cpp : \
+	".\bitstream.h"\
+	".\codedata.h"\
+	".\container.h"\
+	".\ecidecoder.h"\
+	".\formatinfo.h"\
+	".\galois.h"\
+	".\qrerror.h"\
+	
+
+.\ecidecoder.cpp : \
+	".\bitstream.h"\
+	".\ecidecoder.h"\
+	
+
+.\formatinfo.cpp : \
+	".\formatinfo.h"\
+	".\galois.h"\
+	".\qrerror.h"\
+	
+
+.\galois.cpp : \
+	".\galois.h"\
+	
+
+.\imagereader.cpp : \
+	".\bitstream.h"\
+	".\codedata.h"\
+	".\container.h"\
+	".\ecidecoder.h"\
+	".\formatinfo.h"\
+	".\galois.h"\
+	".\imagereader.h"\
+	".\qrerror.h"\
+	{$(INCLUDE)}"cv.h"\
+	{$(INCLUDE)}"cvcompat.h"\
+	{$(INCLUDE)}"cvtypes.h"\
+	{$(INCLUDE)}"cxcore.h"\
+	{$(INCLUDE)}"cxerror.h"\
+	{$(INCLUDE)}"cxtypes.h"\
+	{$(INCLUDE)}"emmintrin.h"\
+	{$(INCLUDE)}"mmintrin.h"\
+	{$(INCLUDE)}"xmmintrin.h"\
+	
+
+.\libdecodeqr.cpp : \
+	".\bitstream.h"\
+	".\codedata.h"\
+	".\container.h"\
+	".\ecidecoder.h"\
+	".\formatinfo.h"\
+	".\galois.h"\
+	".\imagereader.h"\
+	".\qrerror.h"\
+	".\qrtypes.h"\
+	".\version.h"\
+	{$(INCLUDE)}"cv.h"\
+	{$(INCLUDE)}"cvcompat.h"\
+	{$(INCLUDE)}"cvtypes.h"\
+	{$(INCLUDE)}"cxcore.h"\
+	{$(INCLUDE)}"cxerror.h"\
+	{$(INCLUDE)}"cxtypes.h"\
+	{$(INCLUDE)}"emmintrin.h"\
+	{$(INCLUDE)}"mmintrin.h"\
+	{$(INCLUDE)}"xmmintrin.h"\
+	

@@ -2,14 +2,13 @@
 
 require 'rubygems'
 require 'hoe'
-require './lib/qrdecode.rb'
 
 kind = Config::CONFIG['DLEXT']
 windows = RUBY_PLATFORM =~ /mswin/i ? true : false
 
 EXT = "ext/qrdecode/qrdecode.#{kind}"
 
-Hoe.new('qrdecode', Qrdecode::VERSION) do |p|
+Hoe.new('qrdecode', '1.0.0') do |p|
   p.developer('Aaron Patterson', 'aaronp@rubyforge.org')
   p.clean_globs = [
     'ext/qrdecode/Makefile',
