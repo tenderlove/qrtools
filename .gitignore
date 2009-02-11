@@ -1,0 +1,12 @@
+.*.swp
+*.tmproj
+ext/qrdecode/*.o
+ext/qrdecode/*.dll
+ext/qrdecode/Makefile
+ext/qrdecode/*.log
+ext/qrdecode/*.bundle
+ext/qrdecode/*.a
+ext/qrdecode/*.so
+ext/qrdecode/conftest.dSYM
+tags
+.rake_tasks

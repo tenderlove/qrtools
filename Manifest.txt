@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/qrdecode
+lib/qrdecode.rb
+test/test_qrdecode.rb
