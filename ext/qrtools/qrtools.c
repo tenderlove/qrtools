@@ -9,4 +9,5 @@ void Init_qrtools()
 
   init_qrtools_image();
   init_qrtools_decoder();
+  init_qrtools_header();
 }

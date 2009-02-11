@@ -20,6 +20,17 @@ static VALUE decode(VALUE klass, VALUE image)
 
 static VALUE header(VALUE self)
 {
+  QrCodeHeader * header = calloc(1, sizeof(QrCodeHeader));
+  QrDecoderHandle decoder;
+
+  Data_Get_Struct(self, struct QrDecoderHandle, decoder);
+
+  qr_decoder_get_header(decoder, header);
+
+  if(header)
+    return Data_Wrap_Struct(cQRToolsHeader, NULL, free, header);
+
+  free(header);
   return Qnil;
 }
 
