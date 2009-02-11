@@ -34,6 +34,25 @@ static VALUE header(VALUE self)
   return Qnil;
 }
 
+static VALUE body(VALUE self)
+{
+  QrDecoderHandle decoder;
+  QrCodeHeader * head;
+
+  VALUE _header = rb_funcall(self, rb_intern("header"), 0);
+  if(Qnil == _header) return Qnil;
+
+  Data_Get_Struct(self, struct QrDecoderHandle, decoder);
+  Data_Get_Struct(_header, QrCodeHeader, head);
+
+  char *buf = calloc(head->byte_size + 1, sizeof(char));
+  qr_decoder_get_body(decoder, (unsigned char *)buf, head->byte_size + 1);
+
+  VALUE b = rb_str_new(buf, head->byte_size);
+  free(buf);
+  return b;
+}
+
 VALUE cQRToolsDecoder;
 void init_qrtools_decoder()
 {
@@ -44,4 +63,5 @@ void init_qrtools_decoder()
 
   rb_define_singleton_method(klass, "decode", decode, 1);
   rb_define_method(klass, "header", header, 0);
+  rb_define_method(klass, "body", body, 0);
 }

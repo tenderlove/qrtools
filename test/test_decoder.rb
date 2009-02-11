@@ -11,5 +11,12 @@ class DecoderTestCase < QRToolsTestCase
     assert decoder = QRTools::Decoder.decode(img)
     assert decoder.header
   end
+
+  def test_body
+    img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
+    assert decoder = QRTools::Decoder.decode(img)
+    assert decoder.body
+    assert_match 'amazon', decoder.body
+  end
 end
 
