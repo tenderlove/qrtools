@@ -1,17 +1,28 @@
 #include <qrtools_decoder.h>
 
-static VALUE decode(VALUE klass, VALUE image)
+static VALUE decode(int argc, VALUE *argv, VALUE klass)
 {
+  VALUE image, th_size, th_delta;
+
   IplImage * src;
-  Data_Get_Struct(image, IplImage, src);
 
   QrDecoderHandle decoder = qr_decoder_open();
+
+  rb_scan_args(argc, argv, "12", &image, &th_size, &th_delta);
+
+  Data_Get_Struct(image, IplImage, src);
+
+  int c_size = DEFAULT_ADAPTIVE_TH_SIZE;
+  int c_delta = DEFAULT_ADAPTIVE_TH_DELTA;
+
+  if(RTEST(th_size)) c_size = NUM2INT(th_size);
+  if(RTEST(th_delta)) c_delta = NUM2INT(th_delta);
 
   short status = qr_decoder_decode_image(
       decoder,
       src,
-      DEFAULT_ADAPTIVE_TH_SIZE,
-      DEFAULT_ADAPTIVE_TH_DELTA
+      c_size,
+      c_delta
   );
 
   VALUE self = Data_Wrap_Struct(klass, NULL, qr_decoder_close, decoder);
@@ -63,7 +74,7 @@ void init_qrtools_decoder()
 
   cQRToolsDecoder = klass;
 
-  rb_define_singleton_method(klass, "decode", decode, 1);
+  rb_define_singleton_method(klass, "decode", decode, -1);
   rb_define_method(klass, "header", header, 0);
   rb_define_method(klass, "body", body, 0);
 }
