@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-QRTools is a library for decoding QR Code barcodes.  It relies on
+QRTools is a library for decoding QR Codes.  It relies on
 libdecodeqr for decoding.
 
 == FEATURES/PROBLEMS:
