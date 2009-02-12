@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby -w
+
+require 'rubygems'
+require 'qrtools'
+
+img = QRTools::Image.load(ARGV[0])
+25.step(3, -2) { |i|
+  10.step(0, -1) { |j|
+    body = QRTools::Decoder.decode(img, i, j).body
+    next unless body
+    puts body
+    exit
+  }
+}
