@@ -1,32 +1,40 @@
 = qrdecode
 
-* FIX (url)
+* http://qrtools.rubyforge.org/
 
 == DESCRIPTION:
 
-FIX (describe your package)
+QRTools is a library for decoding QR Code barcodes.  It relies on
+libdecodeqr for decoding.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* Currently no encoding is supported, only decoding.
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+  img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
+  decoder = QRTools::Decoder.decode(img)
+  puts decoder.body
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* opencv
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+On OS X:
+
+  * port install opencv
+  * gem install qrtools
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIX
+Copyright (c) 2009:
+
+* {Aaron Patterson}[http://tenderlovemaking.com]
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
