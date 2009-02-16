@@ -1,4 +1,4 @@
-= qrdecode
+= QRTools
 
 * http://qrtools.rubyforge.org/
 
