@@ -1,13 +1,13 @@
 #include <qrtools_ui_camera.h>
 
-static VALUE allocate(VALUE klass)
-{
-  return Data_Wrap_Struct(klass, NULL, NULL, NULL);
-}
-
 static void deallocate(CvCapture * capture)
 {
   if(capture) cvReleaseCapture(&capture);
+}
+
+static VALUE allocate(VALUE klass)
+{
+  return Data_Wrap_Struct(klass, NULL, deallocate, NULL);
 }
 
 static VALUE start(VALUE self)
