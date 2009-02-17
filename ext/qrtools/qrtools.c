@@ -10,5 +10,5 @@ void Init_qrtools()
   init_qrtools_image();
   init_qrtools_decoder();
   init_qrtools_header();
-  init_qrtools_camera();
+  init_qrtools_ui_camera();
 }

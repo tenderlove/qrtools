@@ -10,7 +10,7 @@
 #include <qrtools_image.h>
 #include <qrtools_decoder.h>
 #include <qrtools_header.h>
-#include <qrtools_camera.h>
+#include <qrtools_ui_camera.h>
 
 extern VALUE mQRTools;
 

@@ -1,4 +1,4 @@
-#include <qrtools_camera.h>
+#include <qrtools_ui_camera.h>
 
 static VALUE allocate(VALUE klass)
 {
@@ -41,14 +41,15 @@ static VALUE capture(VALUE self)
   return Qnil;
 }
 
-VALUE cQRToolsCamera;
+VALUE cQRToolsUICamera;
 
-void init_qrtools_camera()
+void init_qrtools_ui_camera()
 {
-  VALUE qrtools  = rb_define_module("QRTools");
-  VALUE klass    = rb_define_class_under(qrtools, "Camera", rb_cObject);
+  VALUE qrtools = rb_define_module("QRTools");
+  VALUE ui      = rb_define_module_under(qrtools, "UI");
+  VALUE klass   = rb_define_class_under(ui, "Camera", rb_cObject);
 
-  cQRToolsCamera = klass;
+  cQRToolsUICamera = klass;
   rb_define_alloc_func(klass, allocate);
   rb_define_method(klass, "capture", capture, 0);
 
