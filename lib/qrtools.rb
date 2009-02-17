@@ -1,4 +1,5 @@
 require 'qrtools/qrtools' # native
+require 'qrtools/decoder'
 require 'qrtools/ui/camera'
 require 'qrtools/ui/window'
 
