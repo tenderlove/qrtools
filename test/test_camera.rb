@@ -7,10 +7,13 @@ class CameraTestCase < QRToolsTestCase
   
   def test_capture
     frame = nil
+    filename = File.join(Dir::tmpdir, 'cam.jpg')
     QRTools::Camera.new(0) do |camera|
       frame = camera.capture
     end
     assert frame
+    frame.save(filename)
+    assert File.exists?(filename)
   end
 
   def test_block

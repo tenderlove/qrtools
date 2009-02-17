@@ -34,8 +34,11 @@ static VALUE capture(VALUE self)
   CvCapture * capture;
   Data_Get_Struct(self, CvCapture, capture);
 
-  IplImage * img = cvQueryFrame(capture);
-  return QRTools_Wrap_Image(img);
+  IplImage * cam = cvQueryFrame(capture);
+  if(cam)
+    return QRTools_Wrap_Image(cvCloneImage(cam));
+
+  return Qnil;
 }
 
 VALUE cQRToolsCamera;
