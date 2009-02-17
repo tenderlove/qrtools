@@ -4,6 +4,14 @@ class CameraTestCase < QRToolsTestCase
   def test_new
     assert camera = QRTools::Camera.new(0)
   end
+  
+  def test_capture
+    frame = nil
+    QRTools::Camera.new(0) do |camera|
+      frame = camera.capture
+    end
+    assert frame
+  end
 
   def test_block
     called = false

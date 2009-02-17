@@ -29,6 +29,15 @@ static VALUE stop(VALUE self)
   return self;
 }
 
+static VALUE capture(VALUE self)
+{
+  CvCapture * capture;
+  Data_Get_Struct(self, CvCapture, capture);
+
+  IplImage * img = cvQueryFrame(capture);
+  return QRTools_Wrap_Image(img);
+}
+
 VALUE cQRToolsCamera;
 
 void init_qrtools_camera()
@@ -38,6 +47,8 @@ void init_qrtools_camera()
 
   cQRToolsCamera = klass;
   rb_define_alloc_func(klass, allocate);
+  rb_define_method(klass, "capture", capture, 0);
+
   rb_define_private_method(klass, "native_start", start, 0);
   rb_define_private_method(klass, "native_stop", stop, 0);
 }

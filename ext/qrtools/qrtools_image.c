@@ -11,6 +11,11 @@ static VALUE load(VALUE klass, VALUE path)
   return Data_Wrap_Struct(klass, NULL, dealloc, src);
 }
 
+VALUE QRTools_Wrap_Image(IplImage * image)
+{
+  return Data_Wrap_Struct(cQRToolsImage, NULL, dealloc, image);
+}
+
 VALUE cQRToolsImage;
 
 void init_qrtools_image()
