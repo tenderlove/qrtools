@@ -12,8 +12,8 @@ class CameraTestCase < QRToolsTestCase
       frame = camera.capture
     end
     assert frame
-    frame.save(filename)
-    assert File.exists?(filename)
+    frame.save filename
+    assert File.exist?(filename)
   end
 
   def test_block
