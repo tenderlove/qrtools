@@ -84,6 +84,25 @@ static VALUE binarized_image(VALUE self)
   return QRTools_Wrap_Image(bin);
 }
 
+static VALUE coderegion_vertexes(VALUE self)
+{
+  QrDecoderHandle decoder;
+  Data_Get_Struct(self, struct QrDecoderHandle, decoder);
+
+  CvPoint *vertexes = qr_decoder_get_coderegion_vertexes(decoder);
+  VALUE cPoint = rb_const_get(cQRToolsImage, rb_intern("Point"));
+
+  VALUE list = rb_ary_new();
+  int i = 0;
+  for(i = 0; i < 4; i++) {
+    CvPoint p = vertexes[i];
+    VALUE point = rb_funcall(cPoint, rb_intern("new"), 2, INT2NUM(p.x), INT2NUM(p.y));
+    rb_ary_push(list, point);
+  }
+
+  return list;
+}
+
 VALUE cQRToolsDecoder;
 void init_qrtools_decoder()
 {
@@ -100,4 +119,5 @@ void init_qrtools_decoder()
   rb_define_method(klass, "body", body, 0);
   rb_define_method(klass, "image=", set_image, 1);
   rb_define_method(klass, "binarized_image", binarized_image, 0);
+  rb_define_method(klass, "coderegion_vertexes", coderegion_vertexes, 0);
 }
