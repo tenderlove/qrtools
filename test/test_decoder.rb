@@ -13,6 +13,15 @@ class DecoderTestCase < QRToolsTestCase
     end
   end
 
+  def test_binarized_image
+    img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
+    decoder = QRTools::Decoder.new(img)
+    decoder.decode
+    QRTools::UI::Window.new("foo") do |window|
+      window.display decoder.binarized_image
+    end
+  end
+
   def test_set_image
     img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
     assert decoder = QRTools::Decoder.new(img)

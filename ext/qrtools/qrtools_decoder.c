@@ -74,6 +74,16 @@ static VALUE set_image(VALUE self, VALUE image)
   return self;
 }
 
+static VALUE binarized_image(VALUE self)
+{
+  QrDecoderHandle decoder;
+  Data_Get_Struct(self, struct QrDecoderHandle, decoder);
+
+  IplImage * bin = cvCloneImage(qr_decoder_get_binarized_image_buffer(decoder));
+
+  return QRTools_Wrap_Image(bin);
+}
+
 VALUE cQRToolsDecoder;
 void init_qrtools_decoder()
 {
@@ -89,4 +99,5 @@ void init_qrtools_decoder()
   rb_define_method(klass, "header", header, 0);
   rb_define_method(klass, "body", body, 0);
   rb_define_method(klass, "image=", set_image, 1);
+  rb_define_method(klass, "binarized_image", binarized_image, 0);
 }
