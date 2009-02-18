@@ -62,6 +62,18 @@ static VALUE body(VALUE self)
   return b;
 }
 
+static VALUE set_image(VALUE self, VALUE image)
+{
+  QrDecoderHandle decoder;
+  Data_Get_Struct(self, struct QrDecoderHandle, decoder);
+
+  IplImage * src;
+  Data_Get_Struct(image, IplImage, src);
+  qr_decoder_set_image_buffer(decoder, src);
+
+  return self;
+}
+
 VALUE cQRToolsDecoder;
 void init_qrtools_decoder()
 {
@@ -76,4 +88,5 @@ void init_qrtools_decoder()
 
   rb_define_method(klass, "header", header, 0);
   rb_define_method(klass, "body", body, 0);
+  rb_define_method(klass, "image=", set_image, 1);
 }

@@ -7,6 +7,18 @@ class DecoderTestCase < QRToolsTestCase
     assert decoder.decode
   end
 
+  def test_cannot_decode
+    QRTools::UI::Camera.new(0) do |camera|
+      assert ! QRTools::Decoder.new(camera.capture).decode
+    end
+  end
+
+  def test_set_image
+    img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
+    assert decoder = QRTools::Decoder.new(img)
+    decoder.image = img
+  end
+
   def test_decode
     img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
     assert decoder = QRTools::Decoder.decode(img)
