@@ -14,6 +14,16 @@ static VALUE hide(VALUE self)
   return self;
 }
 
+static VALUE display(VALUE self, VALUE image)
+{
+  VALUE name = rb_iv_get(self, "@name");
+
+  IplImage * src;
+  Data_Get_Struct(image, IplImage, src);
+  cvShowImage(StringValuePtr(name), src);
+  return self;
+}
+
 VALUE cQRToolsUIWindow;
 
 void init_qrtools_ui_window()
@@ -26,4 +36,5 @@ void init_qrtools_ui_window()
 
   rb_define_method(klass, "show", show, 0);
   rb_define_method(klass, "hide", hide, 0);
+  rb_define_method(klass, "display", display, 1);
 }

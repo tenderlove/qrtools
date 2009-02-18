@@ -15,6 +15,14 @@ class WindowTestCase < QRToolsTestCase
     assert camera.hide
   end
 
+  def test_show_image
+    QRTools::UI::Window.new("foo") do |window|
+      QRTools::UI::Camera.new(0) do |camera|
+        window.display camera.capture
+      end
+    end
+  end
+
   def test_new_takes_block
     called = false
     QRTools::UI::Window.new("foo") do |window|
