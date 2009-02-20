@@ -1,10 +1,25 @@
 #include <qrtools_qrcode.h>
 
-static width(VALUE self)
+static VALUE width(VALUE self)
 {
   QRcode * code;
   Data_Get_Struct(self, QRcode, code);
-  return NUM2INT(code->width);
+  return INT2NUM(code->width);
+}
+
+static VALUE version(VALUE self)
+{
+  QRcode * code;
+  Data_Get_Struct(self, QRcode, code);
+  return INT2NUM(code->version);
+}
+
+static VALUE data(VALUE self)
+{
+  QRcode * code;
+  Data_Get_Struct(self, QRcode, code);
+
+  return rb_str_new(code->data, code->width * code->width);
 }
 
 VALUE cQRToolsQRCode;
@@ -16,4 +31,6 @@ void init_qrtools_qrcode()
   cQRToolsQRCode = klass;
 
   rb_define_method(klass, "width", width, 0);
+  rb_define_method(klass, "version", version, 0);
+  rb_define_method(klass, "data", data, 0);
 }
