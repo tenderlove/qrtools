@@ -5,6 +5,7 @@ require 'tempfile'
   $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), path)))
 end
 
+require 'rubygems'
 require 'qrtools'
 
 class QRToolsTestCase < Test::Unit::TestCase

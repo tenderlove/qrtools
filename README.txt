@@ -13,7 +13,19 @@ libdecodeqr for decoding.
 
 == SYNOPSIS:
 
-  img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
+  ###
+  # Encode a QR code
+  require 'qrtools'
+  require 'tempfile'
+
+  filename = File.join(Dir::tmpdir, 'test.png')
+  File.open(filename, 'wb') { |fh|
+    fh.write QRTools::Encoder.encode('http://tenderlovemaking.com/').to_png
+  }
+
+  ###
+  # Decode A QR code
+  img = QRTools::Image.load(filename)
   decoder = QRTools::Decoder.decode(img)
   puts decoder.body
 
