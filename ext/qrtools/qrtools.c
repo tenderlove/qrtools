@@ -13,4 +13,5 @@ void Init_qrtools()
   init_qrtools_ui_camera();
   init_qrtools_ui_window();
   init_qrtools_encoder();
+  init_qrtools_qrcode();
 }

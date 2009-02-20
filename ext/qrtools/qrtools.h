@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <ruby.h>
 #include <decodeqr.h>
+#include <qrencode.h>
 #include <highgui.h>
 
 #include <qrtools_image.h>
@@ -13,6 +14,7 @@
 #include <qrtools_ui_camera.h>
 #include <qrtools_ui_window.h>
 #include <qrtools_encoder.h>
+#include <qrtools_qrcode.h>
 
 extern VALUE mQRTools;
 

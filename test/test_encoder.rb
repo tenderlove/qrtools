@@ -28,4 +28,8 @@ class EncoderTestCase < QRToolsTestCase
       :error_correction => QRTools::Encoder::L
     )
   end
+
+  def test_code_has_a_width
+    assert code = QRTools::Encoder.encode('hello world')
+  end
 end

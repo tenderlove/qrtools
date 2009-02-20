@@ -25,7 +25,7 @@
 #define QR_MODE_8BIT 4
 #define QR_MODE_FNC1_1 5
 #define QR_MODE_ECI 7
-#define QR_MODE_KANJI 8
+#define QR_MODE_KANJIS 8
 #define QR_MODE_FNC1_2 9
 
 typedef void * QrDecoderHandle;

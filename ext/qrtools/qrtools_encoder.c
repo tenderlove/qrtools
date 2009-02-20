@@ -13,14 +13,15 @@ static VALUE encode(int argc, VALUE *argv, VALUE klass)
   VALUE case_sensitive = rb_hash_aref(options, rb_intern("case_sensitive"));
   VALUE mode = rb_hash_aref(options, rb_intern("mode"));
 
-  QRcode_encodeString(
+  QRcode * code = QRcode_encodeString(
       StringValuePtr(string),
       RTEST(version) ? NUM2INT(version) : 0,
       RTEST(level) ? NUM2INT(level) : 0,
-      RTEST(mode) ? NUM2INT(mode) : 1,
-      RTEST(case_sensitive) ? NUM2INT(case_sensitive) : 0
+      RTEST(mode) ? NUM2INT(mode) : 2,
+      RTEST(case_sensitive) ? (case_sensitive ? 1 : 0) : 0
   );
-  return klass;
+  if(NULL == code) rb_raise(rb_eRuntimeError, "could not create code");
+  return Data_Wrap_Struct(cQRToolsQRCode, NULL, QRcode_free, code);
 }
 
 VALUE cQRToolsEncoder;
