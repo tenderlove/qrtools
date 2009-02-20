@@ -20,6 +20,7 @@ static VALUE encode(int argc, VALUE *argv, VALUE klass)
       RTEST(mode) ? NUM2INT(mode) : 1,
       RTEST(case_sensitive) ? NUM2INT(case_sensitive) : 0
   );
+  return klass;
 }
 
 VALUE cQRToolsEncoder;
