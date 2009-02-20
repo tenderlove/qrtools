@@ -19,5 +19,6 @@ dir_config('qrencode', "/opt/local/include", "/opt/local/lib")
 %w{ qrencode cxcore cv highgui }.each do |lib|
   abort "need #{lib}" unless have_library(lib)
 end
+find_header('qrencode.h')
 have_library('stdc++')
 create_makefile('qrtools')

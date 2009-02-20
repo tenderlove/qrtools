@@ -12,6 +12,7 @@
 #include <qrtools_header.h>
 #include <qrtools_ui_camera.h>
 #include <qrtools_ui_window.h>
+#include <qrtools_encoder.h>
 
 extern VALUE mQRTools;
 

@@ -1,5 +1,4 @@
 #include <qrtools_encoder.h>
-#include <qrencode.h>
 
 static VALUE encode(int argc, VALUE *argv, VALUE klass)
 {
