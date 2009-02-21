@@ -8,17 +8,20 @@ static VALUE encode(int argc, VALUE *argv, VALUE klass)
     options = rb_hash_new();
   }
 
-  VALUE version = rb_hash_aref(options, rb_intern("version"));
-  VALUE level = rb_hash_aref(options, rb_intern("error_correction"));
-  VALUE case_sensitive = rb_hash_aref(options, rb_intern("case_sensitive"));
-  VALUE mode = rb_hash_aref(options, rb_intern("mode"));
+  VALUE version = rb_hash_aref(options, ID2SYM(rb_intern("version")));
+  VALUE level = rb_hash_aref(options, ID2SYM(rb_intern("error_correction")));
+  VALUE case_sensitive = rb_hash_aref(options, ID2SYM(rb_intern("case_sensitive")));
+  VALUE mode = rb_hash_aref(options, ID2SYM(rb_intern("mode")));
+
+  int cs = 0;
+  if(RTEST(case_sensitive) && case_sensitive == Qtrue) cs = 1;
 
   QRcode * code = QRcode_encodeString(
       StringValuePtr(string),
       RTEST(version) ? NUM2INT(version) : 0,
       RTEST(level) ? NUM2INT(level) : 0,
       RTEST(mode) ? NUM2INT(mode) : 2,
-      RTEST(case_sensitive) ? (case_sensitive ? 1 : 0) : 0
+      cs
   );
   if(NULL == code) rb_raise(rb_eRuntimeError, "could not create code");
   return Data_Wrap_Struct(cQRToolsQRCode, NULL, QRcode_free, code);
