@@ -25,7 +25,7 @@ class QRCodeTestCase < QRToolsTestCase
     assert @code.to_s
   end
 
-  def test_to_png
+  def test_roundtrip
     filename = File.join(Dir::tmpdir, 'out.png')
     File.open(filename, 'wb') { |f|
       f.write @code.to_png
