@@ -9,7 +9,7 @@ libdecodeqr for decoding.
 
 == FEATURES/PROBLEMS:
 
-* Currently no encoding is supported, only decoding.
+* Currently awesome.
 
 == SYNOPSIS:
 
@@ -37,7 +37,7 @@ libdecodeqr for decoding.
 
 On OS X:
 
-  * port install opencv
+  * port install opencv qrencode
   * gem install qrtools
 
 == LICENSE:
