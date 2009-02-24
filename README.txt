@@ -39,6 +39,7 @@ libdecodeqr for decoding.
 == REQUIREMENTS:
 
 * opencv
+* qrencode
 
 == INSTALL:
 
