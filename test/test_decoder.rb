@@ -9,7 +9,7 @@ class DecoderTestCase < QRToolsTestCase
 
   def test_coderegion_vertexes
     img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
-    assert decoder = QRTools::Decoder.decode(img)
+    assert decoder = QRTools::QRCode.decode(img)
     verts = decoder.coderegion_vertexes
     assert_equal 4, verts.length
   end

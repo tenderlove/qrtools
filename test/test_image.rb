@@ -11,4 +11,9 @@ class ImageTestCase < QRToolsTestCase
     assert img.save(filename)
     assert File.exist?(filename)
   end
+
+  def test_to_nsimage
+    img = QRTools::Image.load(File.join(ASSETS, '01-1.jpg'))
+    assert img.to_nsimage
+  end
 end

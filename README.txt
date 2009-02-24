@@ -9,6 +9,7 @@ libdecodeqr for decoding.
 
 == FEATURES/PROBLEMS:
 
+* Running the tests will take a picture of you.
 * Currently awesome.
 
 == SYNOPSIS:
@@ -20,14 +21,20 @@ libdecodeqr for decoding.
 
   filename = File.join(Dir::tmpdir, 'test.png')
   File.open(filename, 'wb') { |fh|
-    fh.write QRTools::Encoder.encode('http://tenderlovemaking.com/').to_png
+    fh.write QRTools::QRCode.encode('http://tenderlovemaking.com/').to_png
   }
 
   ###
-  # Decode A QR code
+  # Decode A QR code from a file
   img = QRTools::Image.load(filename)
-  decoder = QRTools::Decoder.decode(img)
+  decoder = QRTools::QRCode.decode(img)
   puts decoder.body
+
+  ###
+  # Decode a photo from the webcam
+  QRTools::UI::Camera.new(0) do |camera|
+    puts QRTools::QRCode.decode(camera.capture).body
+  end
 
 == REQUIREMENTS:
 

@@ -3,6 +3,16 @@ require 'png'
 
 module QRTools
   class QRCode
+    class << self
+      def decode *args, &block
+        Decoder.decode *args, &block
+      end
+
+      def encode *args, &block
+        Encoder.encode *args, &block
+      end
+    end
+
     def to_matrix
       codes = []
       data.unpack("C#{width ** 2}").each_slice(width) { |row|

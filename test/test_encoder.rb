@@ -6,7 +6,7 @@ class EncoderTestCase < QRToolsTestCase
   end
 
   def test_encode_with_mode
-    assert code = QRTools::Encoder.encode('元気',
+    assert code = QRTools::QRCode.encode('元気',
       :mode => QRTools::Encoder::KANJI
     )
   end
