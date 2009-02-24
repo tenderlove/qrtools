@@ -1,3 +1,9 @@
+=== 1.0.1 / 2009-02-24
+
+* 1 Bugfix
+
+  * I forgot a gem dependency!
+
 === 1.0.0 / 2009-02-11
 
 * 1 major enhancement
