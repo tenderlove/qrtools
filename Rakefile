@@ -17,6 +17,7 @@ HOE = Hoe.new('qrtools', QRTools::VERSION) do |p|
     'ext/qrtools/*.{o,so,bundle,a,log,dll}',
     'ext/qrtools/conftest.dSYM',
   ]
+  p.extra_deps      = [['png', '>= 1.1.0']]
   p.spec_extras = { :extensions => ["ext/qrtools/extconf.rb"] }
 end
 
