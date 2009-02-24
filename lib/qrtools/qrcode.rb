@@ -17,8 +17,10 @@ module QRTools
       }.join("\n")
     end
 
-    def to_png scale = 10
-      canvas = PNG::Canvas.new(width * scale, width * scale, PNG::Color::White)
+    def to_png scale = 4, border = 10
+      # Add 2 extra rows / columns for white borders
+      size = (width + border) * scale
+      canvas = PNG::Canvas.new(size, size, PNG::Color::White)
 
       scaled_matrix = []
       to_matrix.each do |row|
@@ -28,9 +30,12 @@ module QRTools
         scaled_matrix += ([scaled_row] * scale)
       end
 
+      factor = border / 2 * scale
       scaled_matrix.each_with_index { |row, i|
+        x = i + factor
         row.each_with_index { |bit, j|
-          canvas[i, j] = bit ? PNG::Color::Black : PNG::Color::White 
+          y = j + factor
+          canvas[x, y] = bit ? PNG::Color::Black : PNG::Color::White 
         }
       }
       PNG.new(canvas).to_blob

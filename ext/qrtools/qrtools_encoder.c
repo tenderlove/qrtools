@@ -27,6 +27,27 @@ static VALUE encode(int argc, VALUE *argv, VALUE klass)
   return Data_Wrap_Struct(cQRToolsQRCode, NULL, QRcode_free, code);
 }
 
+static VALUE version(VALUE self)
+{
+  QRinput * input;
+  Data_Get_Struct(self, QRinput, input);
+  return INT2NUM(QRinput_getVersion(input));
+}
+
+static VALUE set_version(VALUE self, VALUE version)
+{
+  QRinput * input;
+  Data_Get_Struct(self, QRinput, input);
+  QRinput_setVersion(input, NUM2INT(version));
+
+  return self;
+}
+
+static VALUE allocate(VALUE klass)
+{
+  return Data_Wrap_Struct(klass, NULL, QRinput_free, QRinput_new());
+}
+
 VALUE cQRToolsEncoder;
 void init_qrtools_encoder()
 {
@@ -34,5 +55,9 @@ void init_qrtools_encoder()
   VALUE klass   = rb_define_class_under(qrtools, "Encoder", rb_cObject);
 
   cQRToolsEncoder = klass;
+
+  rb_define_alloc_func(klass, allocate);
   rb_define_singleton_method(klass, "encode", encode, -1);
+  rb_define_method(klass, "version", version, 0);
+  rb_define_method(klass, "version=", set_version, 1);
 }

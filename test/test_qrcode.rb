@@ -2,7 +2,22 @@ require File.expand_path(File.join(File.dirname(__FILE__), "helper"))
 
 class QRCodeTestCase < QRToolsTestCase
   def setup
-    #@code = QRTools::Encoder.encode('http://tenderlovemaking.com/')
+    @code = QRTools::Encoder.encode('http://tenderlovemaking.com/')
+  end
+
+  def test_new
+    encoder = QRTools::Encoder.new
+  end
+
+  def test_version
+    encoder = QRTools::Encoder.new
+    assert encoder.version
+  end
+
+  def test_version=
+    encoder = QRTools::Encoder.new
+    encoder.version = 1
+    assert_equal 1, encoder.version
   end
 
   def test_code_has_a_width
@@ -39,7 +54,7 @@ class QRCodeTestCase < QRToolsTestCase
   end
 
   def test_marshal_roundtrip
-    object = Foo.new("bar")
+    object = Foo.new("foo")
     packed = [Marshal.dump(object)].pack('m')
 
     # Encode packed object
@@ -48,7 +63,7 @@ class QRCodeTestCase < QRToolsTestCase
       :error_correction => QRTools::Encoder::H
     )
 
-    filename = File.join(Dir::tmpdir, 'out.png')
+    filename = File.join('/tmp', 'out.png')
     File.open(filename, 'wb') { |f| f.write code.to_png }
 
     img = QRTools::Image.load(filename)
